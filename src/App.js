@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Dashboard from './components/dashboard/Dashboard.js';
+import Form from './components/form/Form.js';
+import Header from './components/header/Header.js';
 
 class App extends Component {
   render() {
@@ -20,6 +23,9 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <Header/>
+        <Dashboard/>
+        <Form/>
       </div>
     );
   }
