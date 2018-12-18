@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Dashboard from './components/dashboard/Dashboard.js';
 import Form from './components/form/Form.js';
 import Header from './components/header/Header.js';

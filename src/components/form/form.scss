@@ -1,0 +1,33 @@
+.form {
+  background-color: red;
+  max-width: 30%;
+  border-radius: 5px;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+.form__p {
+  margin: 0;
+}
+
+.form__input {
+  width: 100%;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.form__button {
+  display: flex;
+  margin: 1em 0 1em 0;
+  height: 2em;
+  justify-content: space-around;
+}
+
+.form__button__cancel {
+  border-radius: 5px;
+}
+
+.form__button__add {
+  border-radius: 5px;
+}
+
+
