@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import Product from '../product/Product.js';
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     console.log(this.props.inventoryList)

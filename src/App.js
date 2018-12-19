@@ -11,13 +11,16 @@ class App extends Component {
     this.state = {
       inventory: []
     }
+    this.getInventory = this.getInventory.bind(this);
   }
 
-  componentDidMount() {
-    this.getInventory();
+  async componentDidMount() {
+    const inventory = await axios.get('/api/inventory')
+    this.setState({inventory: inventory.data})
   }
 
-  getInventory = () => {
+  getInventory () {
+    console.log('getInventory invoked!')
     axios.get('/api/inventory')
       .then(inventory => this.setState({inventory: inventory.data}))
   }
@@ -27,7 +30,7 @@ class App extends Component {
       <div className="App">
         <Header/>
         <Dashboard inventory={this.state.inventory}/>
-        <Form getInventory={this.getInventory}/>
+        <Form invokeGetInventory={this.getInventory}/>
       </div>
     );
   }

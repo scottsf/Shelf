@@ -1,16 +1,23 @@
 require('dotenv').config();
-let express = require('express');
-let bodyParser = require('body-parser');
-let massive = require('massive');
-let ctr = require('./controller.js');
-let app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const massive = require('massive');
+const ctr = require('./controller.js');
+const app = express();
+const monitor = require('pg-monitor');
+const cors = require('cors');
 
 app.use(bodyParser.json());
+app.use(cors());
+
 massive(process.env.DB_URI).then(instance => {
+  // console.log(instance)
+  monitor.attach(instance.driverConfig)
+  console.log('Massive attack! ')
   app.set('db', instance);
 });
 
-app.get('/api/inventory', ctr.read)
+app.get('/api/inventory', ctr.getAll)
 app.post('/api/product', ctr.createProduct)
-let PORT = 3001;
+const PORT = 3001;
 app.listen(PORT, () => console.log(`App is running on ${PORT}`));
