@@ -4,10 +4,10 @@ import Product from '../product/Product.js';
 class Dashboard extends Component {
   constructor() {
     super();
-    }
+  }
 
   render() {
-    console.log(this.props.inventory)
+    console.log(this.props.inventoryList)
     let inventoryList = this.props.inventory.map((item, i) => (
       <Product item={item} key={i}/>
     ))

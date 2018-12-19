@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import './form.scss';
+import axios from 'axios';
 
 class Form extends Component {
   constructor() {
     super();
     this.state = {
-      url: '',
-      productName: '',
+      img: '',
+      name: '',
       price: ''
     }
   }
@@ -19,23 +20,30 @@ class Form extends Component {
 
   cancel = () => {
     this.setState({
-      url: '', productName: '', price: ''
+      img: '', name: '', price: 0
     })
   }
+
+  saveProduct () {
+    axios.post('/api/product', this.state)
+        this.cancel();
+        this.props.getInventory();
+  }
+
   render() {
     return (
       <div className='form'>
         <img alt='image' className='form__image' />
         <p className='form__p'>Image URL:</p>
-        <input className='form__input' onChange={this.handleInput} name='url' />
+        <input className='form__input' value={this.state.img} onChange={this.handleInput} name='img' />
         <p className='form__p'>Product Name:</p>
-        <input className='form__input' onChange={this.handleInput} name='price' />
+        <input className='form__input' value={this.state.name} onChange={this.handleInput} name='name' />
         <p className='form__p'>Price</p>
-        <input className='form__input'onChange={this.handleInput} name='productName' />
+        <input className='form__input' value={this.state.price} onChange={this.handleInput} name='price' type='number' />
         <div className='form__button'>
           <button className='form__button__cancel' onClick={this.cancel}>Cancel</button>
-          <button className='form__button__add'>Add Inventory</button>
-        </div>
+          <button className='form__button__add' onClick={this.saveProduct.bind(this)}>Add Inventory</button>
+      </div>
       </div>
     )
   }

@@ -11,6 +11,6 @@ massive(process.env.DB_URI).then(instance => {
 });
 
 app.get('/api/inventory', ctr.read)
-app.post('/api/product', ctr.create)
+app.post('/api/product', ctr.createProduct)
 let PORT = 3001;
 app.listen(PORT, () => console.log(`App is running on ${PORT}`));
