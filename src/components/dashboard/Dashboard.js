@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Product from '../product/Product.js';
+import './dashboard.scss';
 
 class Dashboard extends Component {
 
@@ -9,7 +10,7 @@ class Dashboard extends Component {
       <Product item={item} key={i}/>
     ))
     return (
-      <div>
+      <div className='dashboard'>
         {inventoryList}
       </div>
     )
