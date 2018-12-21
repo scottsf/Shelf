@@ -8,6 +8,10 @@ let Product = ({item}) => (
       <p> {item.price} </p>
       <p> {item.name} </p>
     </div>
+    <div className="button">
+      <button className="button__delete btn"> Delete </button>
+      <button className="button__add btn"> Add </button>
+    </div>
   </div>
 )
 
