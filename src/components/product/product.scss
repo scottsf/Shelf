@@ -1,0 +1,21 @@
+.product {
+  background-color: red;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+  overflow: auto;
+  padding: 1em;
+}
+
+.product__image {
+  float: left;
+}
+
+.product__p {
+  float: left;
+  margin-left: 1em;
+}
+
+.product__p > p {
+  margin: 0 0 1em 0;
+}
