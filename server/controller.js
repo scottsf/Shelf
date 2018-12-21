@@ -21,5 +21,13 @@ module.exports = {
         res.status(200).send(products)
       })
       .catch(() => res.status(500).send());
+  },
+  removeProduct: (req, res) => {
+    let {id} = req.params;
+
+    const dbInstance = req.app.get('db');
+    dbInstance.removeProduct([id]).then(instance => {
+      res.status(200).send(instance[0]);
+    })
   }
 }
