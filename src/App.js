@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <Dashboard inventory={this.state.inventory}/>
+        <Dashboard getInventory={this.getInventory} inventory={this.state.inventory}/>
         <Form invokeGetInventory={this.getInventory}/>
       </div>
     );

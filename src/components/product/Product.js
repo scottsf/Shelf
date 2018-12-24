@@ -9,7 +9,7 @@ let Product = ({item, invokeRemoveProduct, id}) => (
       <p> {item.name} </p>
     </div>
     <div className="button">
-      <button className="button__delete btn" onClick={invokeRemoveProduct(id)}> Delete </button>
+      <button className="button__delete btn" onClick={() => invokeRemoveProduct(id)}> Delete </button>
       <button className="button__add btn"> Add </button>
     </div>
   </div>
