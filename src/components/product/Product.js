@@ -1,7 +1,7 @@
 import React from 'react';
 import './product.scss';
 
-let Product = ({item, invokeRemoveProduct, id}) => (
+let Product = ({item, invokeRemoveProduct, id, selectProduct}) => (
   <div className="product">
     <img className="product__image" alt='' src={item.img} />
     <div className="product__p">
@@ -10,7 +10,7 @@ let Product = ({item, invokeRemoveProduct, id}) => (
     </div>
     <div className="button">
       <button className="button__delete btn" onClick={() => invokeRemoveProduct(id)}> Delete </button>
-      <button className="button__add btn"> Add </button>
+      <button className="button__edit btn" onClick={() => selectProduct(item.id)}> Edit </button>
     </div>
   </div>
 )

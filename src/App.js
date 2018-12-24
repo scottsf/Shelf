@@ -26,12 +26,21 @@ class App extends Component {
       .then(inventory => this.setState({inventory: inventory.data}))
   }
 
+  selectProduct = (id)  => {
+    console.log(id)
+    this.setState({selected: id})
+  }
+
   render() {
     return (
       <div className="App">
         <Header/>
-        <Dashboard getInventory={this.getInventory} inventory={this.state.inventory}/>
-        <Form invokeGetInventory={this.getInventory} selected={this.state.selected}/>
+        <Dashboard
+          selectProduct={(product) => this.selectProduct(product)}
+          getInventory={this.getInventory} inventory={this.state.inventory}/>
+        <Form
+          invokeGetInventory={this.getInventory}
+          selected={this.state.selected}/>
       </div>
     );
   }

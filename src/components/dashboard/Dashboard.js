@@ -16,9 +16,10 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props)
     let inventoryList = this.props.inventory.map((item, i) => (
-      <Product item={item} key={i} invokeRemoveProduct={this.removeProduct} id={item.id}/>
+      <Product item={item} key={i}
+        selectProduct={(id) => this.props.selectProduct(id)}
+        invokeRemoveProduct={(id) => this.removeProduct(id)} id={item.id}/>
     ))
     return (
       <div className='dashboard'>

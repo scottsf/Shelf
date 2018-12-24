@@ -9,13 +9,16 @@ class Form extends Component {
       img: '',
       name: '',
       price: '',
-      id: null
+      id: null,
     }
     this.saveProduct = this.saveProduct.bind(this)
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.selected.id !== prevProps.selected.id) {
+      const {img, name, price, id} = this.props.selected;
+
+      console.log('prevProps: ', prevProps, 'id: ', this.props.selected)
       this.setState({img, name, price, id, edit: true});
     }
   }
@@ -61,7 +64,13 @@ class Form extends Component {
         <input className='form__input' value={this.state.price} onChange={this.handleInput} name='price' type='number' />
         <div className='form__button'>
           <button className='form__button__cancel' onClick={this.cancel}>Cancel</button>
-          <button className='form__button__add' onClick={this.saveProduct}>Add Inventory</button>
+      {
+        this.state.edit === 'true'
+        ?
+        <button className='form__button__add' onClick={this.saveProduct}>Save changes</button>
+        :
+        <button className='form__button__add' onClick={this.saveProduct}>Add Inventory</button>
+      }
       </div>
       </div>
     )
