@@ -8,9 +8,16 @@ class Form extends Component {
     this.state = {
       img: '',
       name: '',
-      price: ''
+      price: '',
+      id: null
     }
     this.saveProduct = this.saveProduct.bind(this)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selected.id !== prevProps.selected.id) {
+      this.setState({img, name, price, id, edit: true});
+    }
   }
 
   handleInput = (e) => {
