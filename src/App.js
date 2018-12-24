@@ -10,7 +10,7 @@ class App extends Component {
     super();
     this.state = {
       inventory: [],
-      selected: {}
+      selected: {},
     }
     this.getInventory = this.getInventory.bind(this);
   }
@@ -27,8 +27,10 @@ class App extends Component {
   }
 
   selectProduct = (id)  => {
-    console.log(id)
-    this.setState({selected: id})
+    let selected = this.state.inventory.filter(product => {
+      return product.id === id;
+    })[0];
+    this.setState({selected})
   }
 
   render() {
@@ -37,7 +39,8 @@ class App extends Component {
         <Header/>
         <Dashboard
           selectProduct={(product) => this.selectProduct(product)}
-          getInventory={this.getInventory} inventory={this.state.inventory}/>
+          getInventory={this.getInventory}
+          inventory={this.state.inventory}/>
         <Form
           invokeGetInventory={this.getInventory}
           selected={this.state.selected}/>

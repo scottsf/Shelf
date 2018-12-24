@@ -22,12 +22,22 @@ module.exports = {
       })
       .catch(() => res.status(500).send());
   },
+
   removeProduct: (req, res) => {
     let {id} = req.params;
 
     const dbInstance = req.app.get('db');
     dbInstance.removeProduct([id]).then(instance => {
       res.status(200).send(instance[0]);
+    })
+  },
+
+  update: (req, res) => {
+    let {name, price, img} = req.body;
+    let {id} = req.params;
+    let dbInstance = req.app.get('db');
+    dbInstance.update_product([name, price, img, id]).then(instance => {
+      res.status(200).send(instance)
     })
   }
 }

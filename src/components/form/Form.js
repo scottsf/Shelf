@@ -3,8 +3,8 @@ import './form.scss';
 import axios from 'axios';
 
 class Form extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       img: '',
       name: '',
@@ -15,10 +15,8 @@ class Form extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.selected.id !== prevProps.selected.id) {
+    if (this.props.selected !== prevProps.selected) {
       const {img, name, price, id} = this.props.selected;
-
-      console.log('prevProps: ', prevProps, 'id: ', this.props.selected)
       this.setState({img, name, price, id, edit: true});
     }
   }
@@ -31,9 +29,23 @@ class Form extends Component {
 
   cancel = () => {
     this.setState({
-      img: '', name: '', price: 0
+      img: '', name: '', price: 0, edit: false
     })
   }
+
+  updateProduct = () => {
+    axios.put(`/api/product/${this.state.id}`, this.state)
+      .then(this.props.invokeGetInventory())
+  }
+
+  // saveProduct () {
+  //   axios.post('/api/product', this.state)
+  //   .then(response => {
+  //       this.props.invokeGetInventory();
+  //       this.cancel();
+  //   })
+  // }
+
 
   saveProduct () {
     axios({
@@ -65,9 +77,9 @@ class Form extends Component {
         <div className='form__button'>
           <button className='form__button__cancel' onClick={this.cancel}>Cancel</button>
       {
-        this.state.edit === 'true'
+        this.state.edit === true
         ?
-        <button className='form__button__add' onClick={this.saveProduct}>Save changes</button>
+        <button className='form__button__add' onClick={() => this.updateProduct()}>Save changes</button>
         :
         <button className='form__button__add' onClick={this.saveProduct}>Add Inventory</button>
       }
