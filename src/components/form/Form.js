@@ -83,7 +83,7 @@ class Form extends Component {
         :
         <button className='form__button__add' onClick={this.saveProduct}>Add Inventory</button>
       }
-      </div>
+        </div>
       </div>
     )
   }
