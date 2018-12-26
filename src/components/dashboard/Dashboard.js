@@ -13,9 +13,10 @@ class Dashboard extends Component {
   }
 
 
-  async componentDidMount() {
-    const inventory = await axios.get('/api/inventory')
-    this.setState({inventory: inventory.data})
+  componentDidMount() {
+    // const inventory = await axios.get('/api/inventory')
+    // this.setState({inventory: inventory.data})
+    this.getInventory();
   }
 
   getInventory () {
@@ -27,7 +28,7 @@ class Dashboard extends Component {
   removeProduct = (id) => {
     axios.delete(`/api/product/${id}`)
       .then(res => {
-        this.props.getInventory();
+        this.getInventory();
       })
       .then(error => {
         console.log(error)

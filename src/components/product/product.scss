@@ -1,6 +1,8 @@
+@import '../../styles/settings.scss';
+
 .product {
   position: relative;
-  background-color: red;
+  background-color: $light-pink;
   border-radius: 5px;
   box-sizing: border-box;
   margin-bottom: 2em;
@@ -15,6 +17,8 @@
 .product__p {
   float: left;
   margin-left: 1em;
+  color: #fafafa;
+  font-weight: bold;
 }
 
 .product__p > p {
@@ -33,9 +37,10 @@
 }
 
 .btn {
-  background: lime;
+  background: $light-green;
   border-radius: 5px;
   padding: 0.5em 1em 0.5em 1em;
+  color: #FAFAFA;
 }
 
 
