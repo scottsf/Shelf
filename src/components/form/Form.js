@@ -46,7 +46,10 @@ class Form extends Component {
 
   updateProduct = () => {
     console.log(this.state.id)
-    axios.put(`/api/product/${this.state.id}`, this.state);
+    axios.put(`/api/product/${this.state.id}`, this.state)
+      .then(res => {
+        this.getProduct();
+      })
   }
 
   // saveProduct () {

@@ -14,8 +14,6 @@ class Dashboard extends Component {
 
 
   componentDidMount() {
-    // const inventory = await axios.get('/api/inventory')
-    // this.setState({inventory: inventory.data})
     this.getInventory();
   }
 
