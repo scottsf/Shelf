@@ -25,7 +25,6 @@ module.exports = {
 
   removeProduct: (req, res) => {
     let {id} = req.params;
-
     const dbInstance = req.app.get('db');
     dbInstance.removeProduct([id]).then(instance => {
       res.status(200).send(instance[0]);
@@ -38,6 +37,15 @@ module.exports = {
     let dbInstance = req.app.get('db');
     dbInstance.update_product([name, price, img, id]).then(instance => {
       res.status(200).send(instance)
+    })
+  },
+
+  getProduct: (req, res) => {
+    const {id} = req.params;
+    console.log('ID: ', id)
+    const dbInstance = req.app.get('db');
+    dbInstance.get_product([id]).then(instance => {
+      res.status(200).send(instance[0]);
     })
   }
 }
