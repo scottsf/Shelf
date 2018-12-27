@@ -46,7 +46,6 @@ class Form extends Component {
   //   })
   // }
 
-
   saveProduct () {
     axios({
       method: 'post',
