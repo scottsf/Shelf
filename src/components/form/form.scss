@@ -1,10 +1,14 @@
+@import '../../styles/settings';
+
 .form {
-  background-color: red;
+  margin: 0 auto;
+  background-color: $light-pink;
   width: 20em;
   border-radius: 5px;
   padding: 2%;
   box-sizing: border-box;
-  float: left;
+  color: #fafafa;
+  font-weight: 650;
 }
 
 .form__p {
