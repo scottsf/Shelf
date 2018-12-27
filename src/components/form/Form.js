@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './form.scss';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class Form extends Component {
   constructor(props) {
@@ -14,11 +15,21 @@ class Form extends Component {
     this.saveProduct = this.saveProduct.bind(this)
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.selected !== prevProps.selected) {
-      const {img, name, price, id} = this.props.selected;
-      this.setState({img, name, price, id, edit: true});
-    }
+  componentDidMount() {
+    this.getProduct();
+    // console.log('DATA: ', data)
+    // let {img, name, price, id} = data;
+    // this.setState({img, name, price, id, edit: true})
+  }
+
+  getProduct = () => {
+    let {id} = this.props.match.params;
+    axios.get(`/api/product/${id}`)
+      .then(res => {
+        // console.log('DATA: ', data)
+        let {img, name, price, id} = res.data;
+        this.setState({img, name, price, id, edit: true})
+      })
   }
 
   handleInput = (e) => {
@@ -34,8 +45,11 @@ class Form extends Component {
   }
 
   updateProduct = () => {
+    console.log(this.state.id)
     axios.put(`/api/product/${this.state.id}`, this.state)
-      .then(this.props.invokeGetInventory())
+      .then(res => {
+        this.getProduct();
+      })
   }
 
   // saveProduct () {
@@ -58,7 +72,6 @@ class Form extends Component {
         console.log(error.message)
     }).then(response => {
         // this is now called!
-        this.props.invokeGetInventory();
         this.cancel();
     });
   }
@@ -74,13 +87,19 @@ class Form extends Component {
         <p className='form__p'>Price</p>
         <input className='form__input' value={this.state.price} onChange={this.handleInput} name='price' type='number' />
         <div className='form__button'>
+        <Link to="/">
           <button className='form__button__cancel' onClick={this.cancel}>Cancel</button>
+        </Link>
       {
         this.state.edit === true
         ?
+        <Link to='/'>
         <button className='form__button__add' onClick={() => this.updateProduct()}>Save changes</button>
+        </Link>
         :
+        <Link to='/'>
         <button className='form__button__add' onClick={this.saveProduct}>Add Inventory</button>
+        </Link>
       }
         </div>
       </div>
