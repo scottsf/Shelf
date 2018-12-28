@@ -12,15 +12,15 @@ class Dashboard extends Component {
     this.getInventory = this.getInventory.bind(this);
   }
 
-
   componentDidMount() {
     this.getInventory();
   }
 
   getInventory () {
-    console.log('getInventory invoked!')
     axios.get('/api/inventory')
-      .then(inventory => this.setState({inventory: inventory.data}))
+      .then(inventory => {
+this.setState({inventory: inventory.data})
+      })
   }
 
   removeProduct = (id) => {
@@ -36,7 +36,7 @@ class Dashboard extends Component {
   render() {
     console.log(this.state.inventory)
     let inventoryList = this.state.inventory.map((item, i) => (
-      <Product item={item} key={i}
+      <Product id={item.id} img={item.img} price={item.price} name={item.name} key={i}
         selectProduct={(id) => this.props.selectProduct(id)}
         invokeRemoveProduct={(id) => this.removeProduct(id)} id={item.id}/>
     ))

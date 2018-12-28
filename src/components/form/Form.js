@@ -17,9 +17,6 @@ class Form extends Component {
 
   componentDidMount() {
     this.getProduct();
-    // console.log('DATA: ', data)
-    // let {img, name, price, id} = data;
-    // this.setState({img, name, price, id, edit: true})
   }
 
   getProduct = () => {
@@ -52,31 +49,15 @@ class Form extends Component {
       })
   }
 
-  // saveProduct () {
-  //   axios.post('/api/product', this.state)
-  //   .then(response => {
-  //       this.props.invokeGetInventory();
-  //       this.cancel();
-  //   })
-  // }
-
   saveProduct () {
-    axios({
-      method: 'post',
-      url: '/api/product',
-      data: this.state,
-      validateStatus: (status) => {
-        return true; // I'm always returning true, you may want to do it depending on the status received
-      },
-    }).catch(error => {
-        console.log(error.message)
-    }).then(response => {
-        // this is now called!
+    axios.post('/api/product', this.state)
+    .then(response => {
         this.cancel();
-    });
+    })
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className='form'>
         <img alt='' className='form__image' />
